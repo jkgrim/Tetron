@@ -131,10 +131,8 @@ class Tetris:
             self.figure.rotation = old_rotation
 
 
-# Initialize the game engine
 pygame.init()
 
-# Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (128, 128, 128)
@@ -144,7 +142,6 @@ screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Tetris")
 
-# Loop until the user clicks the close button.
 done = False
 clock = pygame.time.Clock()
 fps = 25
@@ -187,7 +184,6 @@ while not done:
 
     screen.fill(WHITE)
 
-    # Draw the game grid
     for i in range(game.height):
         for j in range(game.width):
             pygame.draw.rect(screen, GRAY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
@@ -195,7 +191,6 @@ while not done:
                 pygame.draw.rect(screen, colors[game.field[i][j]],
                                  [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 2])
 
-    # Draw the current falling piece
     if game.figure is not None:
         for i in range(4):
             for j in range(4):
@@ -206,7 +201,6 @@ while not done:
                                       game.y + game.zoom * (i + game.figure.y) + 1,
                                       game.zoom - 2, game.zoom - 2])
 
-    # Draw next piece
     next_piece = game.next_piece()
     for i in range(4):
         for j in range(4):
@@ -216,7 +210,6 @@ while not done:
                                  [300 + game.zoom * j + 1, 60 + game.zoom * i + 1,
                                   game.zoom - 2, game.zoom - 2])
 
-    # Draw text elements
     font = pygame.font.SysFont('Calibri', 25, True, False)
     font1 = pygame.font.SysFont('Calibri', 65, True, False)
     text = font.render("Score: " + str(game.score), True, BLACK)
